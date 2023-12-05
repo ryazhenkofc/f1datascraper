@@ -1,4 +1,4 @@
-# F1DataScraper #
+# f1datascraper #
 
 ## What is this? ##
 This module extract Formula 1 data, encompassing drivers, races, teams, and fastest laps, through a parser.
