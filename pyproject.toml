@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "f1dataparser"
+name = "f1datascraper"
 version = "0.1.0"
 description = "A Python library for parsing Formula 1 data."
 authors = ["ryazhenkofc <ryazhenkofc@gmail.com>"]
