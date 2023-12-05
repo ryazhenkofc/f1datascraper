@@ -1,4 +1,4 @@
-# f1datascraper #
+# formulascraper #
 
 ## What is this? ##
 This module extract Formula 1 data, encompassing drivers, races, teams, and fastest laps, through a parser.
@@ -17,7 +17,7 @@ Each category is since 1950, but Teams Standings only since 1958
 The module is based on the following structure:
 
     
-    from f1datascraper import FormulaOneParser, parse_drivers_data
+    from formulascraper import FormulaOneParser, parse_drivers_data
 
 	parser = FormulaOneParser()
 	drivers_data = parser.parse_drivers_data({YEAR})
@@ -35,7 +35,7 @@ Which Python provides by standard.
 Using the library is as simple and convenient as possible:
 Installing the package with `pip`:
 
-	pip install f1datascraper
+	pip install formulascraper
 
 **Getting Started**
 
@@ -43,7 +43,7 @@ Examples of all operations:
 
 Import the `FormulaOneParser` class:
 
-	from f1datascraper import FormulaOneParser
+	from formulascraper import FormulaOneParser
 
 Initialize a `parser` object:
 
