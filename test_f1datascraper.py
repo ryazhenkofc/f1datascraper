@@ -1,5 +1,5 @@
 import unittest
-from f1datascraper import *
+from formulascraper import *
 
 class FormulaOneParserTests(unittest.TestCase):
 

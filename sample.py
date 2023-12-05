@@ -1,4 +1,4 @@
-from f1datascraper import *
+from formulascraper import *
 import prettytable as pt
 
 parser = FormulaOneParser()
