@@ -4,10 +4,10 @@ import re
 
 class FormulaOneParser:
     def __init__(self):
-        self.base_url = "https://www.formula1.com/en/results.html/"
+        self.base_url_f1 = "https://www.formula1.com/en/results.html/"
 
     def parse_drivers_data(self, year):
-        url = f"{self.base_url}{year}/drivers.html"
+        url = f"{self.base_url_f1}{year}/drivers.html"
         response = requests.get(url)
         soup = BeautifulSoup(response.text, features="html.parser")
 
@@ -20,7 +20,7 @@ class FormulaOneParser:
         return drivers_data
 
     def parse_races_data(self, year):
-        url = f"{self.base_url}{year}/races.html"
+        url = f"{self.base_url_f1}{year}/races.html"
         response = requests.get(url)
         soup = BeautifulSoup(response.text, features="html.parser")
 
@@ -33,7 +33,7 @@ class FormulaOneParser:
         return races_data
 
     def parse_teams_data(self, year):
-        url = f"{self.base_url}{year}/team.html"
+        url = f"{self.base_url_f1}{year}/team.html"
         response = requests.get(url)
         soup = BeautifulSoup(response.text, features="html.parser")
 
@@ -46,7 +46,7 @@ class FormulaOneParser:
         return teams_data
 
     def parse_fastest_laps_data(self, year):
-        url = f"{self.base_url}{year}/fastest-laps.html"
+        url = f"{self.base_url_f1}{year}/fastest-laps.html"
         response = requests.get(url)
         soup = BeautifulSoup(response.text, features="html.parser")
 
@@ -121,11 +121,3 @@ class FormulaOneParser:
         }
 
         return fastest_lap_info
-
-
-if __name__ == "__main__":
-    parser = FormulaOneParser()
-
-    drivers_data = parser.parse_drivers_data(2023)
-
-    print(drivers_data)
