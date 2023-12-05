@@ -15,7 +15,7 @@ Categories from which you can pull data:
 The module is based on the following structure:
 
     
-    from f1dataparser import FormulaOneParser, parse_drivers_data
+    from f1datascraper import FormulaOneParser, parse_drivers_data
 
 	parser = FormulaOneParser()
 	drivers_data = parser.parse_drivers_data({YEAR})
@@ -33,7 +33,7 @@ Which Python provides by standard.
 Using the library is as simple and convenient as possible:
 Installing the package with `pip`:
 
-	pip install f1dataparser
+	pip install f1datascraper
 
 **Getting Started**
 
@@ -41,7 +41,7 @@ Examples of all operations:
 
 Import the `FormulaOneParser` class:
 
-	from f1dataparser import FormulaOneParser
+	from f1datascraper import FormulaOneParser
 
 Initialize a `parser` object:
 
