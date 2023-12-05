@@ -10,6 +10,7 @@ Categories from which you can pull data:
 - Teams Standing (`teams`)
 - Fastest Laps Results (`fastest_laps`)
 
+Each category is since 1950, but Teams Standings only since 1958
 
 
 ## Quick Guide ##
