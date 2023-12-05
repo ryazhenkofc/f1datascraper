@@ -1,10 +1,10 @@
-from f1dataparser import *
+from f1datascraper import *
 import prettytable as pt
 
 parser = FormulaOneParser()
 table = pt.PrettyTable()
 
-table.title = 'Formula One 2023 Season'
+table.title = 'Formula 1 2023 Season'
 
 drivers_data = parser.parse_drivers_data(2023)
 table.field_names = ['Position', 'Name', 'Nationality', 'Car', 'Points']
