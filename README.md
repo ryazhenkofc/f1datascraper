@@ -11,6 +11,7 @@ Categories from which you can pull data:
 - Fastest Laps Results (`fastest_laps`)
 
 
+
 ## Quick Guide ##
 The module is based on the following structure:
 
