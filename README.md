@@ -1,7 +1,7 @@
 # formulascraper #
 
 ## What is this? ##
-This module extract Formula 1 data, encompassing drivers, races, teams, and fastest laps, through a parser.
+This module extract Formula 1, F1 Academy, Formula 2, Formula 3 data, encompassing drivers, races, teams, and fastest laps, through a parser.
 
 Categories from which you can pull data:
 
@@ -10,26 +10,39 @@ Categories from which you can pull data:
 - Teams Standing (`teams`)
 - Fastest Laps Results (`fastest_laps`)
 
-Each category is since 1950, but Teams Standings only since 1958
+> **Formula 1**
+> 
+> Each category is since 1950, but Teams Standings only since 1958
 
+> **Formula 1 Academy**
+> 
+> Each category is since 2023
 
-## Quick Guide ##
+> **Formula 2**
+> 
+> Each category is since 2017
+
+> **Formula 3**
+> 
+> Each category is since 2019
+
+**Quick Guide**
+
 The module is based on the following structure:
 
     
-    from formulascraper import FormulaOneParser, parse_drivers_data
+    from formulascraper import Formula1Scraper, get_drivers_data
 
-	parser = FormulaOneParser()
-	drivers_data = parser.parse_drivers_data({YEAR})
-    
-Which Python provides by standard.
+	scraper = Formula1Scraper()
+	drivers_data = scraper.get_drivers_data({YEAR})
 
 
 ----------
 
 
-### Using ###
 
+
+## Getting Started ##
 **Installation**
 
 Using the library is as simple and convenient as possible:
@@ -37,27 +50,54 @@ Installing the package with `pip`:
 
 	pip install formulascraper
 
-**Getting Started**
+**Classes and functions that available:**
+
+> Formula1Scraper:
+
+	get_drivers_data(year)
+	get_races_data(year)
+	get_teams_data(year)
+	get_fastest_laps_data(year)
+
+> Formula1AcademyScraper:
+
+	get_drivers_data(year)
+	get_races_data(year)
+	get_teams_data(year)
+
+> Formula2Scraper:
+
+	get_drivers_data(year)
+	get_races_data(year)
+	get_teams_data(year)
+
+> Formula3Scraper:
+
+	get_drivers_data(year)
+	get_races_data(year)
+	get_teams_data(year)
+
+## Using ##
 
 Examples of all operations:
 
-Import the `FormulaOneParser` class:
+Import the `Formula1Scraper` class:
 
-	from formulascraper import FormulaOneParser
+	from formulascraper import Formula1Scraper
 
-Initialize a `parser` object:
+Initialize a `scraper` object:
 
-	parser = FormulaOneParser()
+	scraper = Formula1Scraper()
 
-Parsing Data
+Scraping Data
 Call the parsing methods on the parser object, passing in the year:
 
-**`parse_{category}_data` takes as an argument only one argument which is `{YEAR}`**
+**`get_{category}_data` takes as an argument only one argument which is `{year}`**
 
-	drivers_data = parser.parse_drivers_data(2021)
-	races_data = parser.parse_races_data(2023)
-	teams_data = parser.parse_teams_data(2018) 
-	fastest_laps = parser.parse_fastest_laps_data(1999)
+	drivers_data = scraper.get_drivers_data(2021)
+	races_data = scraper.get_races_data(2023)
+	teams_data = scraper.get_teams_data(2018) 
+	fastest_laps = scraper.get_fastest_laps_data(1999)
 
 
 ----------

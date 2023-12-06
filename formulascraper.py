@@ -2,11 +2,11 @@ import requests
 from bs4 import BeautifulSoup
 import re
 
-class FormulaOneParser:
+class Formula1Scraper:
     def __init__(self):
         self.base_url_f1 = "https://www.formula1.com/en/results.html/"
 
-    def parse_drivers_data(self, year):
+    def get_drivers_data(self, year):
         url = f"{self.base_url_f1}{year}/drivers.html"
         response = requests.get(url)
         soup = BeautifulSoup(response.text, features="html.parser")
@@ -19,7 +19,7 @@ class FormulaOneParser:
 
         return drivers_data
 
-    def parse_races_data(self, year):
+    def get_races_data(self, year):
         url = f"{self.base_url_f1}{year}/races.html"
         response = requests.get(url)
         soup = BeautifulSoup(response.text, features="html.parser")
@@ -32,7 +32,7 @@ class FormulaOneParser:
 
         return races_data
 
-    def parse_teams_data(self, year):
+    def get_teams_data(self, year):
         url = f"{self.base_url_f1}{year}/team.html"
         response = requests.get(url)
         soup = BeautifulSoup(response.text, features="html.parser")
@@ -45,7 +45,7 @@ class FormulaOneParser:
 
         return teams_data
 
-    def parse_fastest_laps_data(self, year):
+    def get_fastest_laps_data(self, year):
         url = f"{self.base_url_f1}{year}/fastest-laps.html"
         response = requests.get(url)
         soup = BeautifulSoup(response.text, features="html.parser")
@@ -121,3 +121,252 @@ class FormulaOneParser:
         }
 
         return fastest_lap_info
+    
+class Formula1AcademyScraper:
+    def __init__(self):
+        self.base_url_f1a = "https://www.f1academy.com/Standings/"
+
+    def get_drivers_data(self, year):
+        url = f"{self.base_url_f1a}Driver?seasonId=1"
+        response = requests.get(url)
+        soup = BeautifulSoup(response.text, features="html.parser")
+
+        drivers_data = []
+
+        for table in soup.find_all('table', class_='table table-bordered'):
+            for row in table.find_all("tr")[1:]:
+                driver_info = self._extract_driver_info(row)
+                drivers_data.append(driver_info)
+                
+        return drivers_data
+    
+    def get_races_data(self, year):
+        url = f"{self.base_url_f1a}Driver?seasonId=1"
+        response = requests.get(url)
+        soup = BeautifulSoup(response.text, "html.parser")
+
+        races_data = []
+
+        for table in soup.find_all('table', class_='table table-bordered'):
+            for row in soup.find_all("th")[2:]:
+                race_info = self._extract_race_info(row, year)
+                races_data.append(race_info)
+
+        return races_data 
+    
+    def get_teams_data(self, year):
+        url = f"{self.base_url_f1a}Team?seasonId=1"
+        response = requests.get(url)
+        soup = BeautifulSoup(response.text, "html.parser")
+
+        teams_data = []
+
+        for table in soup.find_all('table', class_='table table-bordered'):
+            for row in table.find_all("tr")[1:]:
+                team_info = self._extract_team_info(row)
+                teams_data.append(team_info)
+
+        return teams_data
+    
+    def _extract_driver_info(self, row):
+        position = re.findall(r'<div class="pos">(.*?)</div>', str(row))[0].strip()  
+        driver_name = re.findall(r'<span class="visible-desktop-up">(.*?)</span>', str(row))[0].strip()
+        points = re.findall(r'<div class="total-points">(.*?)</div>', str(row))[0].strip()
+
+        driver_info = {
+            "position": position,
+            "name": driver_name, 
+            "points": points
+        }
+        
+        return driver_info 
+    
+    def _extract_race_info(self, row, year):
+        grandprix = re.findall(r'<div class="country-name"><span>(.*?)</span></div>', str(row))[0].strip()
+        date = re.findall(r'<div class="dates">(.*?)</div>', str(row))[0].strip()
+
+        race_info = {
+            "grandprix": grandprix,
+            "date": f'{date} {year}'
+        }
+        
+        return race_info
+        
+    def _extract_team_info(self, row):
+        position = re.findall(r'<div class="pos">(.*?)</div>', str(row))[0].strip()
+        team = re.findall(r'<span class="visible-desktop-up">(.*?)</span>', str(row))[0].strip()
+        points = re.findall(r'<div class="total-points">(.*?)</div>', str(row))[0].strip()
+
+        team_info = {
+            "position": position,
+            "team": team,
+            "points": points
+        }
+
+        return team_info
+      
+class Formula2Scraper:
+    def __init__(self):
+        self.base_url_f2 = "https://www.fiaformula2.com/Standings/"
+
+    def get_drivers_data(self, year):
+        url = f"{self.base_url_f2}Driver?seasonId={year-1843}"
+        response = requests.get(url)
+        soup = BeautifulSoup(response.text, features="html.parser")
+
+        drivers_data = []
+
+        for table in soup.find_all('table', class_='table table-bordered'):
+            for row in table.find_all("tr")[1:]:
+                driver_info = self._extract_driver_info(row)
+                drivers_data.append(driver_info)
+                
+        return drivers_data
+    
+    def get_races_data(self, year):
+        url = f"{self.base_url_f2}Driver?seasonId={year-1843}"
+        response = requests.get(url)
+        soup = BeautifulSoup(response.text, "html.parser")
+
+        races_data = []
+
+        for table in soup.find_all('table', class_='table table-bordered'):
+            for row in soup.find_all("th")[2:]:
+                race_info = self._extract_race_info(row, year)
+                races_data.append(race_info)
+
+        return races_data 
+    
+    def get_teams_data(self, year):
+        url = f"{self.base_url_f2}Team?seasonId={year-1843}"
+        response = requests.get(url)
+        soup = BeautifulSoup(response.text, "html.parser")
+
+        teams_data = []
+
+        for table in soup.find_all('table', class_='table table-bordered'):
+            for row in table.find_all("tr")[1:]:
+                team_info = self._extract_team_info(row)
+                teams_data.append(team_info)
+
+        return teams_data
+    
+    def _extract_driver_info(self, row):
+        position = re.findall(r'<div class="pos">(.*?)</div>', str(row))[0].strip()  
+        driver_name = re.findall(r'<span class="visible-desktop-up">(.*?)</span>', str(row))[0].strip()
+        points = re.findall(r'<div class="total-points">(.*?)</div>', str(row))[0].strip()
+
+        driver_info = {
+            "position": position,
+            "name": driver_name, 
+            "points": points
+        }
+        
+        return driver_info 
+    
+    def _extract_race_info(self, row, year):
+        grandprix = re.findall(r'<div class="country-name"><span>(.*?)</span></div>', str(row))[0].strip()
+        date = re.findall(r'<div class="dates">(.*?)</div>', str(row))[0].strip()
+
+        race_info = {
+            "grandprix": grandprix,
+            "date": f'{date} {year}'
+        }
+        
+        return race_info
+        
+    def _extract_team_info(self, row):
+        position = re.findall(r'<div class="pos">(.*?)</div>', str(row))[0].strip()
+        team = re.findall(r'<span class="visible-desktop-up">(.*?)</span>', str(row))[0].strip()
+        points = re.findall(r'<div class="total-points">(.*?)</div>', str(row))[0].strip()
+
+        team_info = {
+            "position": position,
+            "team": team,
+            "points": points
+        }
+
+        return team_info
+        
+class Formula3Scraper:
+    def __init__(self):
+        self.base_url_f3 = "https://www.fiaformula3.com/Standings/"
+
+    def get_drivers_data(self, year):
+        url = f"{self.base_url_f3}Driver?seasonId={year-1843}"
+        response = requests.get(url)
+        soup = BeautifulSoup(response.text, features="html.parser")
+
+        drivers_data = []
+
+        for table in soup.find_all('table', class_='table table-bordered'):
+            for row in table.find_all("tr")[1:]:
+                driver_info = self._extract_driver_info(row)
+                drivers_data.append(driver_info)
+                
+        return drivers_data
+    
+    def get_races_data(self, year):
+        url = f"{self.base_url_f3}Driver?seasonId={year-1843}"
+        response = requests.get(url)
+        soup = BeautifulSoup(response.text, "html.parser")
+
+        races_data = []
+
+        for table in soup.find_all('table', class_='table table-bordered'):
+            for row in soup.find_all("th")[2:]:
+                race_info = self._extract_race_info(row, year)
+                races_data.append(race_info)
+
+        return races_data
+    
+    def get_teams_data(self, year):
+        url = f"{self.base_url_f3}Team?seasonId={year-1843}"
+        response = requests.get(url)
+        soup = BeautifulSoup(response.text, "html.parser")
+
+        teams_data = []
+
+        for table in soup.find_all('table', class_='table table-bordered'):
+            for row in table.find_all("tr")[1:]:
+                team_info = self._extract_team_info(row)
+                teams_data.append(team_info)
+
+        return teams_data
+        
+    def _extract_driver_info(self, row):
+        position = re.findall(r'<div class="pos">(.*?)</div>', str(row))[0].strip()  
+        driver_name = re.findall(r'<span class="visible-desktop-up">(.*?)</span>', str(row))[0].strip()
+        points = re.findall(r'<div class="total-points">(.*?)</div>', str(row))[0].strip()
+
+        driver_info = {
+            "position": position,
+            "name": driver_name, 
+            "points": points
+        }
+        
+        return driver_info
+       
+    def _extract_race_info(self, row, year):
+        grandprix = re.findall(r'<div class="country-name"><span>(.*?)</span></div>', str(row))[0].strip()
+        date = re.findall(r'<div class="dates">(.*?)</div>', str(row))[0].strip()
+
+        race_info = {
+            "grandprix": grandprix,
+            "date": f'{date} {year}'
+        }
+        
+        return race_info
+        
+    def _extract_team_info(self, row):
+        position = re.findall(r'<div class="pos">(.*?)</div>', str(row))[0].strip()
+        team = re.findall(r'<span class="visible-desktop-up">(.*?)</span>', str(row))[0].strip()
+        points = re.findall(r'<div class="total-points">(.*?)</div>', str(row))[0].strip()
+
+        team_info = {
+            "position": position,
+            "team": team,
+            "points": points
+        }
+
+        return team_info
