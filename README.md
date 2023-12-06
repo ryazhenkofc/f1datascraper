@@ -86,9 +86,11 @@ Additional Resources:
 ----------
 ### Version Updates
 
-1.1.0 version update (6/12/2023)
+1.1.1 version update (6/12/2023)
 
+-updated tests
 -new categories (Formula 1 Academy, Formula 2, Formula 3)
+-updated README.md
 
 1.0.1 version update (Release, 4/12/2023)
 
