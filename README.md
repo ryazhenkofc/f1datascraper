@@ -1,106 +1,98 @@
 # formulascraper #
 
-## What is this? ##
-This module extract Formula 1, F1 Academy, Formula 2, Formula 3 data, encompassing drivers, races, teams, and fastest laps, through a parser.
+**What is this?**
 
-Categories from which you can pull data:
+This Python library allows you to extract data from various Formula racing websites effortlessly. Get driver standings, race results, team rankings, and fastest laps for Formula 1, F1 Academy, Formula 2, and Formula 3.
 
-- Drivers Standings (`drivers`)
-- Race Results (`races`)
-- Teams Standing (`teams`)
-- Fastest Laps Results (`fastest_laps`)
+**Categories:**
 
-> **Formula 1**
-> 
-> Each category is since 1950, but Teams Standings only since 1958
-
-> **Formula 1 Academy**
-> 
-> Each category is since 2023
-
-> **Formula 2**
-> 
-> Each category is since 2017
-
-> **Formula 3**
-> 
-> Each category is since 2019
-
-**Quick Guide**
-
-The module is based on the following structure:
-
-    
-    from formulascraper import Formula1Scraper, get_drivers_data
-
-	scraper = Formula1Scraper()
-	drivers_data = scraper.get_drivers_data({YEAR})
+- Drivers Standings (drivers)
+- Race Results (races)
+- Teams Standing (teams)
+- Fastest Laps Results (fastest_laps)
 
 
-----------
+**Data Availability:**
 
+- Formula 1: All categories since 1950 (Teams Standings since 1958)
+- Formula 1 Academy: All categories since 2023 (expect fastest_laps)
+- Formula 2: All categories since 2017 (expect fastest_laps)
+- Formula 3: All categories since 2019 (expect fastest_laps)
 
+## Quickstart ##
 
-
-## Getting Started ##
-**Installation**
-
-Using the library is as simple and convenient as possible:
-Installing the package with `pip`:
+**Install**:
 
 	pip install formulascraper
 
-**Classes and functions that available:**
+**Import**:
 
-> Formula1Scraper:
+	from formulascraper import Formula1Scraper, get_drivers_data
 
-	get_drivers_data(year)
-	get_races_data(year)
-	get_teams_data(year)
-	get_fastest_laps_data(year)
+----------
 
-> Formula1AcademyScraper:
+**Extract Data:**
 
-	get_drivers_data(year)
-	get_races_data(year)
-	get_teams_data(year)
-
-> Formula2Scraper:
-
-	get_drivers_data(year)
-	get_races_data(year)
-	get_teams_data(year)
-
-> Formula3Scraper:
-
-	get_drivers_data(year)
-	get_races_data(year)
-	get_teams_data(year)
-
-## Using ##
-
-Examples of all operations:
-
-Import the `Formula1Scraper` class:
-
-	from formulascraper import Formula1Scraper
-
-Initialize a `scraper` object:
+ Formula 1 data:
 
 	scraper = Formula1Scraper()
-
-Scraping Data
-Call the parsing methods on the parser object, passing in the year:
-
-**`get_{category}_data` takes as an argument only one argument which is `{year}`**
-
 	drivers_data = scraper.get_drivers_data(2021)
-	races_data = scraper.get_races_data(2023)
-	teams_data = scraper.get_teams_data(2018) 
-	fastest_laps = scraper.get_fastest_laps_data(1999)
+
+ Formula 1 Academy data:
+
+	academy_scraper = Formula1AcademyScraper()
+	races_data = academy_scraper.get_races_data(2023)
+
+ Formula 2 data:
+
+	f2_scraper = Formula2Scraper()
+	teams_data = f2_scraper.get_teams_data(2012)
+
+ Formula 3 data:
+
+	f3_scraper = Formula3Scraper()
+	fastest_laps = f3_scraper.get_fastest_laps_data(2021)
+
+----------
+
+**Documentation:**
+
+Classes and Functions:
+
+- Formula1Scraper: `get_drivers_data`, `get_races_data`, `get_teams_data`, `get_fastest_laps_data`
+
+- Formula1AcademyScraper: `get_drivers_data`, `get_races_data`, `get_teams_data`
+
+- Formula2Scraper: `get_drivers_data`, `get_races_data`, `get_teams_data`
+
+- Formula3Scraper: `get_drivers_data`, `get_races_data`, `get_teams_data`
 
 
 ----------
 
-## Developer ##
-My profile: [ryazhenkofc](https://github.com/ryazhenkofc) 
+Author:
+
+ryazhenkofc (GitHub profile: https://github.com/ryazhenkofc)
+
+----------
+
+Additional Resources:
+
+-   Formula 1 Website: [https://www.formula1.com]
+-   Formula 1 Academy Website: [https://www.f1academy.com]
+-   Formula 2 Website: [https://www.fiaformula2.com]
+-   Formula 3 Website: [https://www.fiaformula3.com]
+
+----------
+### Version Updates
+
+1.1.0 version update (6/12/2023)
+
+-new categories (Formula 1 Academy, Formula 2, Formula 3)
+
+1.0.1 version update (Release, 4/12/2023)
+
+-test samples
+-Formula 1 scraping
+
+
