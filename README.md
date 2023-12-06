@@ -86,13 +86,18 @@ Additional Resources:
 ----------
 ### Version Updates
 
-1.1.1 version update (6/12/2023)
+1.1.2 version update
+
+-small fixes
+-added docstrings
+
+1.1.1 version update
 
 -updated tests
 -new categories (Formula 1 Academy, Formula 2, Formula 3)
 -updated README.md
 
-1.0.1 version update (Release, 4/12/2023)
+1.0.1 version update (Release)
 
 -test samples
 -Formula 1 scraping
