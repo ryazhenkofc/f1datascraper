@@ -2,7 +2,7 @@
 
 **What is this?**
 
-This Python library allows you to extract data from various Formula racing websites effortlessly. Get driver standings, race results, team rankings, and fastest laps for Formula 1, F1 Academy, Formula 2, and Formula 3.
+This Python library allows you to extract data from various Formula racing websites effortlessly. Get driver standings, race results, team rankings, and fastest laps for Formula 1, F1 Academy, Formula 2, Formula 3 and Formula E.
 
 **Categories:**
 
@@ -18,6 +18,7 @@ This Python library allows you to extract data from various Formula racing websi
 - Formula 1 Academy: All categories since 2023 (expect fastest_laps)
 - Formula 2: All categories since 2017 (expect fastest_laps)
 - Formula 3: All categories since 2019 (expect fastest_laps)
+- Formula E: All categories since 2015 (expect fastest_laps)
 
 ## Quickstart ##
 
@@ -51,7 +52,12 @@ This Python library allows you to extract data from various Formula racing websi
  Formula 3 data:
 
 	f3_scraper = Formula3Scraper()
-	fastest_laps = f3_scraper.get_fastest_laps_data(2021)
+	fastest_laps = f3_scraper.get_drivers_data(2021)
+
+ Formula E data:
+
+	fe_scraper = FormulaEScraper()
+	fastest_laps = fe_scraper.get_teams_data(2021)
 
 ----------
 
@@ -66,6 +72,8 @@ Classes and Functions:
 - Formula2Scraper: `get_drivers_data`, `get_races_data`, `get_teams_data`
 
 - Formula3Scraper: `get_drivers_data`, `get_races_data`, `get_teams_data`
+
+- FormulaEScraper: `get_drivers_data`, `get_races_data`, `get_teams_data`
 
 
 ----------
@@ -82,9 +90,19 @@ Additional Resources:
 -   Formula 1 Academy Website: [https://www.f1academy.com]
 -   Formula 2 Website: [https://www.fiaformula2.com]
 -   Formula 3 Website: [https://www.fiaformula3.com]
+-   Formula E Website: [https://www.fiaformulae.com]
 
 ----------
 ### Version Updates
+
+1.2.2 version update
+
+- small fixes
+
+1.2.1 version update
+
+- added FormulaE scraping
+- added valuechecks
 
 1.1.2 version update
 
@@ -94,12 +112,12 @@ Additional Resources:
 1.1.1 version update
 
 - updated tests
-- new categories (Formula 1 Academy, Formula 2, Formula 3)
+- added categories (Formula 1 Academy, Formula 2, Formula 3)
 - updated README.md
 
 1.0.1 version update (Release)
 
 - test samples
-- Formula 1 scraping
+- added Formula 1 scraping
 
 
